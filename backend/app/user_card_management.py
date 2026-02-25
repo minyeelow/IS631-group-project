@@ -22,8 +22,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field, validator
 
-from app.services.data_service import USERS_FILE, _load_json, _save_json
-
+from app.services.user_profile import get_user_by_username, 
 
 DEFAULT_USER_ID = "u_001"
 
@@ -118,11 +117,6 @@ def _error_response(
         error=ErrorBody(code=code, message=message, details=details or {}),
     )
     return JSONResponse(status_code=status_code, content=body.model_dump())
-
-
-def _get_users() -> Dict[str, Any]:
-    return _load_json(USERS_FILE)
-
 
 def _save_users(users: Dict[str, Any]) -> None:
     _save_json(USERS_FILE, users)

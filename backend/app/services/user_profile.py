@@ -3,9 +3,6 @@ from app.db.db import SessionLocal
 from app.models.user_profile import UserProfile, BenefitsPreference
 from passlib.context import CryptContext
 
-
-from app.services.data_service import USERS_FILE, _load_json, _save_json
-
 pwd_context = CryptContext(schemes=["bcrypt_sha256"], deprecated="auto")
 
 def hash_password(password: str) -> str:
